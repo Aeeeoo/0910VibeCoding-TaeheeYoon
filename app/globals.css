@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  /* 페이지 전체에서 쓰는 단 하나의 강조색 */
+  --color-accent: oklch(0.52 0.15 252);
+}
+
+body {
+  text-wrap: pretty;
+}
