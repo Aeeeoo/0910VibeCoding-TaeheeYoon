@@ -1,4 +1,5 @@
 import Activities from "@/components/Activities";
+import Hero from "@/components/Hero";
 import Interests from "@/components/Interests";
 import Intro from "@/components/Intro";
 import Links from "@/components/Links";
@@ -10,48 +11,72 @@ const profile: Profile = profileData;
 
 export default function Home() {
   return (
-    <main className="min-h-screen px-3 py-6 sm:px-6 sm:py-14">
-      <div className="mx-auto max-w-2xl overflow-hidden rounded-md border border-black/40 shadow-2xl">
-        {/* Windows Terminal 탭 바 */}
+    <main className="min-h-screen bg-black p-3.5">
+      <div className="relative mx-auto max-w-[920px] overflow-hidden border-4 border-arcade-blue bg-arcade-bg shadow-[0_0_0_4px_#000,0_0_0_8px_#1a1a8f,10px_10px_0_8px_rgba(0,0,0,0.9)]">
+        {/* CRT 스캔라인 */}
         <div
           aria-hidden
-          className="flex items-stretch bg-term-chrome text-xs text-term-dim"
+          className="pointer-events-none absolute inset-0 z-5 bg-[repeating-linear-gradient(180deg,rgba(0,0,0,0.35)_0_2px,rgba(0,0,0,0)_2px_4px)] mix-blend-multiply"
+        />
+
+        {/* 아케이드 상단 표시줄 */}
+        <div
+          aria-hidden
+          className="flex items-center justify-between gap-3 border-b-4 border-arcade-blue bg-black px-4 py-3 font-arcade text-[10px] leading-relaxed tracking-wide"
         >
-          <div className="flex items-center gap-2 border-b-2 border-accent bg-term-bg px-4 py-2 text-term-fg">
-            <span className="text-accent">▪</span>
-            Ubuntu
-          </div>
-          <div className="flex items-center px-3">+</div>
-          <div className="ml-auto flex items-center gap-4 px-4">
-            <span>─</span>
-            <span>□</span>
-            <span>✕</span>
-          </div>
+          <span className="text-arcade-cyan">
+            1UP
+            <br />
+            <span className="text-white">000700</span>
+          </span>
+          <span className="text-center text-arcade-red">
+            HIGH SCORE
+            <br />
+            <span
+              className="text-white"
+              style={{ animation: "blink 1.2s steps(1,end) infinite" }}
+            >
+              012500
+            </span>
+          </span>
+          <span className="text-right text-arcade-orange">
+            CREDIT
+            <br />
+            <span className="text-white">01</span>
+          </span>
         </div>
 
-        <div className="space-y-8 bg-term-bg px-4 py-6 text-[15px] leading-relaxed sm:px-7 sm:py-8">
-          <p aria-hidden className="text-sm text-term-dim">
-            Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0 x86_64)
-          </p>
+        <Hero
+          name={profile.name}
+          nameEn={profile.nameEn}
+          tagline={profile.tagline}
+        />
 
-          <Intro
-            name={profile.name}
-            tagline={profile.tagline}
-            intro={profile.intro}
-          />
-          <Interests interests={profile.interests} />
-          <Activities activities={profile.activities} />
-          <Links links={profile.links} />
+        {/* 점선 구분 띠 */}
+        <div
+          aria-hidden
+          className="flex h-3 items-center border-b-4 border-arcade-blue bg-black"
+        >
+          <div className="h-1 w-full bg-[repeating-linear-gradient(90deg,#ffcc00_0_4px,transparent_4px_24px)]" />
+        </div>
 
-          <p aria-hidden className="text-sm">
-            <span className="text-term-user">taehee@DESKTOP-GDG</span>
-            <span className="text-term-dim">:</span>
-            <span className="text-accent">~</span>
-            <span className="text-term-dim">$</span>{" "}
-            <span className="inline-block animate-[blink_1.1s_steps(1,end)_infinite] text-term-fg">
-              ▋
-            </span>
-          </p>
+        <Intro intro={profile.intro} stats={profile.stats} />
+        <Interests interests={profile.interests} />
+        <Activities activities={profile.activities} />
+        <Links links={profile.links} />
+
+        <div
+          aria-hidden
+          className="flex flex-wrap items-center justify-between gap-3 border-t-4 border-arcade-blue bg-black px-4 pb-6 pt-5 font-arcade text-[9px] tracking-wide text-arcade-dim"
+        >
+          <span>© 1998 TAEHEE ARCADE</span>
+          <span className="flex items-center gap-2 text-arcade-yellow">
+            INSERT COIN
+            <span
+              className="h-3 w-[9px] bg-arcade-yellow"
+              style={{ animation: "blink 0.8s steps(1,end) infinite" }}
+            />
+          </span>
         </div>
       </div>
     </main>

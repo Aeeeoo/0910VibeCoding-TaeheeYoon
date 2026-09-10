@@ -5,6 +5,12 @@ export type ProfileLink = {
   href: string;
 };
 
+export type Stat = {
+  /** 아케이드 라벨. 예: "LEVEL" */
+  label: string;
+  value: string;
+};
+
 export type Activity = {
   title: string;
   /** 있으면 제목 옆에 표시 */
@@ -21,8 +27,12 @@ export type ActivityGroup = {
 
 export type Profile = {
   name: string;
+  /** 아케이드 타이틀용 로마자 표기. 줄바꿈은 공백 기준으로 나눈다 */
+  nameEn: string;
   tagline: string;
   intro: string[];
+  /** 히어로 아래 스탯 카드 */
+  stats: Stat[];
   interests: string[];
   activities: ActivityGroup[];
   links: ProfileLink[];

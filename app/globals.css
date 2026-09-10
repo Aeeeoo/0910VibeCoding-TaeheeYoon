@@ -1,19 +1,35 @@
 @import "tailwindcss";
 
-@theme {
-  /* Windows Terminal / WSL 계열 팔레트 */
-  --color-term-bg: #0c1626;
-  --color-term-chrome: #16233a;
-  --color-term-fg: #d6e4f7;
-  --color-term-dim: #5b7595;
-  --color-term-user: #4ec9d4;
-  --color-accent: #4aa8ff;
-
-  --font-mono: "Cascadia Code", "Cascadia Mono", "Consolas", "D2Coding",
-    ui-monospace, "Courier New", monospace;
+/* 한글 픽셀 글꼴. 라틴 문자는 next/font 로 불러오는 Press Start 2P 를 쓴다. */
+@font-face {
+  font-family: "DungGeunMo";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/DungGeunMo.woff")
+    format("woff");
+  font-weight: 400;
+  font-display: swap;
 }
 
-/* 커서 깜빡임 */
+@theme {
+  /* 8비트 아케이드 팔레트 */
+  --color-arcade-bg: #04040c;
+  --color-arcade-panel: #08081a;
+  --color-arcade-card: #0d0d22;
+  --color-arcade-blue: #2121de;
+  --color-arcade-navy: #1a1a8f;
+  --color-arcade-yellow: #ffcc00;
+  --color-arcade-cyan: #00ffff;
+  --color-arcade-pink: #ffb8ff;
+  --color-arcade-orange: #ffb852;
+  --color-arcade-red: #ff0000;
+  --color-arcade-fg: #e8e8f0;
+  --color-arcade-muted: #9a9ab8;
+  --color-arcade-dim: #5c5c8a;
+
+  --font-arcade: var(--font-press-start), monospace;
+  --font-pixel: "DungGeunMo", var(--font-press-start), monospace;
+}
+
+/* 커서·타이틀 깜빡임 */
 @keyframes blink {
   0%,
   49% {
@@ -25,10 +41,45 @@
   }
 }
 
+/* 팩맨 입 */
+@keyframes chomp {
+  0%,
+  100% {
+    clip-path: polygon(100% 32%, 50% 50%, 100% 68%, 100% 100%, 0 100%, 0 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(100% 50%, 50% 50%, 100% 50%, 100% 100%, 0 100%, 0 0, 100% 0);
+  }
+}
+
+/* 유령 위아래 흔들림 */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* 유령 무리 전진 */
+@keyframes marchRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(24px);
+  }
+}
+
 body {
   text-wrap: pretty;
+  /* 픽셀 글꼴이 뭉개지지 않도록 안티에일리어싱을 끈다 */
+  -webkit-font-smoothing: none;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  background: var(--color-arcade-yellow);
+  color: #000;
 }
