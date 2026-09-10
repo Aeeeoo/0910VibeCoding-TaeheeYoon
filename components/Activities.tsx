@@ -17,7 +17,7 @@ export default function Activities({ activities }: Props) {
     <section className="pb-9">
       <StageHeader stage="03" title="ACTIVITIES" />
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 px-5 pt-7">
+      <div className="grid grid-cols-1 gap-7 px-5 pt-7 md:grid-cols-2">
         {activities.map((group, i) => {
           const color = GROUP_COLORS[i % GROUP_COLORS.length];
 
@@ -38,16 +38,17 @@ export default function Activities({ activities }: Props) {
                     key={item.title}
                     className="border-l-4 border-arcade-navy py-0.5 pl-3.5"
                   >
-                    <div className="flex flex-wrap items-baseline gap-2">
-                      <span className="text-[17px] text-white">{item.title}</span>
+                    {/* 제목과 연도를 한 문단에 둬야 연도만 따로 떨어지지 않는다 */}
+                    <p className="text-[17px] leading-[1.7] text-white">
+                      {item.title}
                       {item.period && (
-                        <span className="font-arcade text-[9px] text-arcade-yellow">
+                        <span className="ml-2 whitespace-nowrap font-arcade text-[9px] text-arcade-yellow">
                           {item.period}
                         </span>
                       )}
-                    </div>
+                    </p>
                     {item.note && (
-                      <p className="mt-1.5 text-[15px] text-arcade-muted">
+                      <p className="mt-1.5 text-[15px] leading-[1.7] text-arcade-muted">
                         └─ {item.note}
                       </p>
                     )}

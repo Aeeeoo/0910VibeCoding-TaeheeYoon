@@ -75,6 +75,8 @@
 
 body {
   text-wrap: pretty;
+  /* 한글은 기본값에서 음절 단위로 끊긴다. 어절 단위로 줄바꿈하도록 바꾼다. */
+  word-break: keep-all;
   /* 픽셀 글꼴이 뭉개지지 않도록 안티에일리어싱을 끈다 */
   -webkit-font-smoothing: none;
 }
