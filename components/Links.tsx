@@ -14,7 +14,13 @@ const PLAYER_COLORS = [
 
 /** 주소창에 보일 만한 짧은 형태로 다듬는다. */
 function displayHref(href: string) {
-  return href.replace(/^https?:\/\//, "").replace(/^mailto:/, "");
+  const bare = href.replace(/^https?:\/\//, "").replace(/^mailto:/, "");
+  // LinkedIn 주소처럼 한글이 퍼센트 인코딩된 경우 사람이 읽을 수 있게 되돌린다
+  try {
+    return decodeURIComponent(bare);
+  } catch {
+    return bare;
+  }
 }
 
 export default function Links({ links }: Props) {

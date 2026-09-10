@@ -1,7 +1,10 @@
+import type { ProfileLink } from "@/types/profile";
+
 type Props = {
   name: string;
   nameEn: string;
   tagline: string;
+  portfolio: ProfileLink;
 };
 
 /** 유령 한 마리. 색과 흔들림 시작 시점만 다르다. */
@@ -25,7 +28,7 @@ function Ghost({ color, delay }: { color: string; delay: string }) {
   );
 }
 
-export default function Hero({ name, nameEn, tagline }: Props) {
+export default function Hero({ name, nameEn, tagline, portfolio }: Props) {
   return (
     <section className="border-b-4 border-arcade-blue bg-[radial-gradient(120%_90%_at_50%_0%,#0a0a24_0%,#04040c_70%)] px-5 pb-9 pt-11 text-center">
       <p aria-hidden className="mb-6 font-arcade text-[11px] tracking-[2px] text-arcade-pink">
@@ -65,6 +68,16 @@ export default function Hero({ name, nameEn, tagline }: Props) {
           <Ghost color="bg-arcade-cyan text-arcade-cyan" delay="0.3s" />
         </div>
       </div>
+
+      <a
+        href={portfolio.href}
+        target="_blank"
+        rel="noreferrer"
+        className="mb-7 inline-flex items-center gap-3 border-4 border-arcade-yellow bg-arcade-card px-6 py-4 font-arcade text-[clamp(10px,2.4vw,15px)] leading-relaxed tracking-wider text-arcade-yellow shadow-[6px_6px_0_#000] transition-colors hover:bg-arcade-yellow hover:text-black"
+      >
+        <span aria-hidden>▶</span>
+        {portfolio.label}
+      </a>
 
       <p
         aria-hidden

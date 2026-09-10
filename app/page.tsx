@@ -50,6 +50,7 @@ export default function Home() {
           name={profile.name}
           nameEn={profile.nameEn}
           tagline={profile.tagline}
+          portfolio={profile.portfolio}
         />
 
         {/* 점선 구분 띠 */}

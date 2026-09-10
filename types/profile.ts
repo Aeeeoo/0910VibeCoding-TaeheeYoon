@@ -30,6 +30,8 @@ export type Profile = {
   /** 아케이드 타이틀용 로마자 표기. 줄바꿈은 공백 기준으로 나눈다 */
   nameEn: string;
   tagline: string;
+  /** 타이틀 화면의 포트폴리오 이동 버튼 */
+  portfolio: ProfileLink;
   intro: string[];
   /** 히어로 아래 스탯 카드 */
   stats: Stat[];

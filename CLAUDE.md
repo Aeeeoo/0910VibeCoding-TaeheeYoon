@@ -56,12 +56,6 @@ types/
 - 블로그, 프로젝트 목록 등 두 번째 페이지
 - 상태 관리 라이브러리, 컴포넌트 라이브러리, 애니메이션 라이브러리
 
-## 아직 채워지지 않은 값
-
-`data/profile.json` 에 플레이스홀더가 남아 있다. 사용자가 값을 주기 전까지 지어내지 않는다.
-
-- `links` 의 `github.com/USERNAME`, `linkedin.com/in/USERNAME`, `mailto:TODO@example.com`
-
 ## 명령어
 
 ```bash
