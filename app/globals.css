@@ -1,10 +1,34 @@
 @import "tailwindcss";
 
 @theme {
-  /* 페이지 전체에서 쓰는 단 하나의 강조색 */
-  --color-accent: oklch(0.52 0.15 252);
+  /* Windows Terminal / WSL 계열 팔레트 */
+  --color-term-bg: #0c1626;
+  --color-term-chrome: #16233a;
+  --color-term-fg: #d6e4f7;
+  --color-term-dim: #5b7595;
+  --color-term-user: #4ec9d4;
+  --color-accent: #4aa8ff;
+
+  --font-mono: "Cascadia Code", "Cascadia Mono", "Consolas", "D2Coding",
+    ui-monospace, "Courier New", monospace;
+}
+
+/* 커서 깜빡임 */
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 body {
   text-wrap: pretty;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
 }

@@ -1,4 +1,5 @@
 import type { ActivityGroup } from "@/types/profile";
+import Prompt from "./Prompt";
 
 type Props = {
   activities: ActivityGroup[];
@@ -7,33 +8,35 @@ type Props = {
 export default function Activities({ activities }: Props) {
   return (
     <section>
-      <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400">
-        활동
-      </h2>
+      <Prompt label="활동" command="ls activities/" />
 
-      <div className="mt-6 space-y-8">
+      <div className="mt-5 space-y-7">
         {activities.map((group) => (
           <div key={group.label}>
-            <h3 className="text-sm font-medium text-neutral-900">
-              {group.label}
+            <h3 className="flex items-center gap-3 text-sm text-accent">
+              <span className="shrink-0">{group.label}/</span>
+              <span aria-hidden className="h-px flex-1 bg-term-dim" />
             </h3>
 
-            <ul className="mt-3 space-y-3 border-l border-neutral-200 pl-4">
+            <ul className="mt-3 space-y-2">
               {group.items.map((item) => (
-                <li key={item.title}>
-                  <p className="text-neutral-800">
-                    {item.title}
-                    {item.period && (
-                      <span className="ml-2 text-sm text-neutral-400">
-                        {item.period}
-                      </span>
-                    )}
-                  </p>
-                  {item.note && (
-                    <p className="mt-0.5 text-sm text-neutral-500">
-                      {item.note}
+                <li key={item.title} className="flex gap-3">
+                  <span aria-hidden className="text-term-dim">
+                    [*]
+                  </span>
+                  <div>
+                    <p>
+                      {item.title}
+                      {item.period && (
+                        <span className="ml-2 text-sm text-term-dim">
+                          ({item.period})
+                        </span>
+                      )}
                     </p>
-                  )}
+                    {item.note && (
+                      <p className="text-sm text-term-dim">└─ {item.note}</p>
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>

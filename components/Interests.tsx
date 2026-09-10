@@ -1,3 +1,5 @@
+import Prompt from "./Prompt";
+
 type Props = {
   interests: string[];
 };
@@ -5,17 +7,13 @@ type Props = {
 export default function Interests({ interests }: Props) {
   return (
     <section>
-      <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400">
-        관심사
-      </h2>
+      <Prompt label="관심사" command="cat interests.txt" />
 
-      <ul className="mt-5 flex flex-wrap gap-x-2 gap-y-3">
+      <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-sm">
         {interests.map((interest) => (
-          <li
-            key={interest}
-            className="rounded-full border border-neutral-200 px-3 py-1 text-sm text-neutral-700"
-          >
-            {interest}
+          <li key={interest}>
+            <span className="text-term-dim">[</span> {interest}{" "}
+            <span className="text-term-dim">]</span>
           </li>
         ))}
       </ul>

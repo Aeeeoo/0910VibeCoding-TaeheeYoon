@@ -12,7 +12,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ko">
-      <body className="bg-white text-neutral-900 antialiased">{children}</body>
+      <body className="bg-term-chrome font-mono text-term-fg antialiased">
+        {children}
+      </body>
     </html>
   );
 }

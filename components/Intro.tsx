@@ -1,3 +1,5 @@
+import Prompt from "./Prompt";
+
 type Props = {
   name: string;
   tagline: string;
@@ -7,12 +9,14 @@ type Props = {
 export default function Intro({ name, tagline, intro }: Props) {
   return (
     <section>
-      <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+      <Prompt label="소개" command="cat profile.txt" />
+
+      <h1 className="mt-5 text-2xl font-bold tracking-[0.25em] sm:text-3xl">
         {name}
       </h1>
-      <p className="mt-3 text-neutral-500">{tagline}</p>
+      <p className="mt-2 text-accent">{tagline}</p>
 
-      <div className="mt-8 space-y-4 leading-relaxed text-neutral-700">
+      <div className="mt-6 space-y-4 leading-relaxed text-term-fg/80">
         {intro.map((paragraph, i) => (
           <p key={i}>{paragraph}</p>
         ))}

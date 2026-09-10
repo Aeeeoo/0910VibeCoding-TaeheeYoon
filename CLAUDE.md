@@ -19,6 +19,7 @@ app/
   page.tsx          # profile.json 을 읽어 섹션에 props로 내려보냄
   globals.css       # Tailwind 지시문 + 강조색 토큰
 components/
+  Prompt.tsx        # 섹션 제목 자리의 도스 프롬프트 (sr-only 실제 제목 + 가짜 명령어)
   Intro.tsx         # 이름, 한 줄 소개, 소개 문단
   Interests.tsx     # 관심사
   Activities.tsx    # 교내/교외 그룹을 순회
@@ -36,7 +37,10 @@ types/
 - 컴포넌트는 props로 데이터를 받는다. 컴포넌트 안에서 직접 JSON을 import 하지 않는다 — `page.tsx` 에서 한 번 읽어 내려보낸다. 예외는 `layout.tsx` 뿐이다(`metadata` 는 props를 받을 수 없어 직접 import 한다).
 - 서버 컴포넌트를 기본으로 한다. 상호작용이 실제로 필요할 때만 `'use client'` 를 붙인다. 현재 클라이언트 컴포넌트는 하나도 없고, 없는 상태를 유지하는 게 좋다.
 - 스타일은 Tailwind 유틸리티 클래스로만. 별도 CSS 파일이나 CSS-in-JS를 추가하지 않는다. `globals.css` 는 Tailwind import와 최소한의 토큰만 담는다.
-- 강조색은 `--color-accent` 하나뿐이다(`globals.css` 의 `@theme`). 새 색을 도입하기 전에 이 토큰이나 `neutral` 스케일로 해결되는지 먼저 본다.
+- 디자인은 **90년대 CRT 터미널** 컨셉이다. 색은 `globals.css` 의 `@theme` 토큰 네 개가 전부다 — `--color-term-bg`(배경), `--color-term-fg`(본문 인광 녹색), `--color-term-dim`(테두리·부가정보), `--color-accent`(앰버 강조). 새 색을 만들기 전에 이 네 개나 `term-fg/70` 같은 투명도로 해결되는지 먼저 본다.
+- 본문 글꼴은 고정폭(`font-mono`)이다. `--font-mono` 토큰으로 스택을 관리한다.
+- 스캔라인·글로우 같은 CRT 효과는 JSX의 Tailwind 임의값(`bg-[repeating-linear-gradient(...)]`, `[text-shadow:...]`)으로 넣는다. `globals.css` 에는 `@theme` 토큰, `blink` 키프레임, `::selection` 만 둔다.
+- 섹션 제목은 `Prompt` 컴포넌트를 쓴다. 화면에는 `C:\> type interests.txt` 같은 가짜 명령어가 보이고, 실제 제목은 `sr-only` 로 남긴다 — 장식 때문에 문서 구조를 잃지 않기 위해서다.
 - 활동 그룹(`activities`)은 배열이다. "프로젝트" 같은 그룹을 더하고 싶으면 코드 수정 없이 JSON에 그룹을 추가하면 된다.
 - 모바일 우선. 기본 스타일이 좁은 화면 기준이고, 넓은 화면은 `sm:` 로만 덧붙인다.
 

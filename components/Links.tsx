@@ -1,4 +1,5 @@
 import type { ProfileLink } from "@/types/profile";
+import Prompt from "./Prompt";
 
 type Props = {
   links: ProfileLink[];
@@ -7,23 +8,27 @@ type Props = {
 export default function Links({ links }: Props) {
   return (
     <section>
-      <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400">
-        링크
-      </h2>
+      <Prompt label="링크" command="cat links.txt" />
 
-      <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
-        {links.map((link) => {
+      <ul className="mt-5 space-y-2">
+        {links.map((link, i) => {
           const isExternal = link.href.startsWith("http");
 
           return (
-            <li key={link.label}>
+            <li key={link.label} className="flex flex-wrap items-baseline gap-3">
+              <span aria-hidden className="text-term-dim">
+                [{i + 1}]
+              </span>
               <a
                 href={link.href}
                 {...(isExternal && { target: "_blank", rel: "noreferrer" })}
-                className="text-accent underline decoration-neutral-300 underline-offset-4 transition-colors hover:decoration-accent"
+                className="text-accent underline decoration-dotted underline-offset-4 hover:text-term-fg"
               >
                 {link.label}
               </a>
+              <span className="break-all text-sm text-term-dim">
+                {link.href}
+              </span>
             </li>
           );
         })}
